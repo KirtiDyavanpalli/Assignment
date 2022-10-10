@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title>XHR Demo</title>
+        <script>
+            function searchProduct()
+            {
+                var xhr = new XMLHttpRequest();
+
+                var searchId=document.getElementById("txtid").value;
+                var url = "https://jsonplaceholder.typicode.com/users/"+searchId;
+                xhr.open("get",url,true);
+                xhr.send();
+
+                xhr.onreadystatechange= function(){
+
+                    if(this.readyState==4)
+                    {
+                        if(this.status==200)
+                        {
+                            var response = JSON.parse(this.responseText);
+
+                            document.getElementById("data").style.visibility="visible";
+
+                            var tbody = document.getElementById("data").querySelector("tbody");
+
+                            tbody.innerHTML="";
+
+                            tbody.innerHTML="<tr><td>"+response.id+"</td><td>&nbsp"+response.name+"</td><td>&nbsp"+response.username
+                                +"</td><td>&nbsp"+response.email+"</td><td>&nbsp"+response.address.street+"</td><td>&nbsp"+response.address.city+
+                            "</td><td>&nbsp"+response.address.zipcode+"</td><td>&nbsp "+response.phone+"</td><td>&nbsp "+response.website+"</td><td>&nbsp"+response.company.name+"&nbsp</td><tr>"
+                             
+                        }
+                           function div(){
+                                var data=document.write(data);
+
+                            };
+                        if(this.status==404)
+                        {
+                            alert("The product with id "+searchId+" is not available");
+                        }
+                    }
+                }
+            }
+
+     
+        </script>
+    </head>
+
+    <body>
+        <h2>Search Product By ID</h2>
+
+        Enter Product Id 
+        <input type="text" id="txtid">
+
+        <button onclick="searchProduct()">Search Product</button>
+
+        <table id="data" style="visibility:hidden;">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>username</th>
+                    <th>Email</th>
+                    <th>ADD-Street</th>
+                    <th>city</th>
+                    <th>Zipcode</th>
+                    <th>Phone</th>
+                    <th>Website</th>
+                    <th>Company</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </body>
+</html>

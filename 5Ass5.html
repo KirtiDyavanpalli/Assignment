@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>PUT request to the URL </title>
+        <h3>PUT request to the URL </h3>
+        <script>
+                
+
+            function addProduct()
+            {
+                var obj={
+                    userid : document.getElementById("txtid").value,
+                    name : document.getElementById("txtName").value,
+                    username : document.getElementById("txtUName").value,
+                    email : document.getElementById("txtemail").value
+                }
+                
+
+                fetch("https://ct-testapi-01.azurewebsites.net/api/products",{
+                    method:'PUT',
+                    body:JSON.stringify(obj),
+                    headers:{
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+                }).then(response=>{
+                    if(response.status==200)
+                    {
+                        alert("Info Added Successfully.....");
+                    }
+                })
+                
+            }
+             
+                //.then(res=>res.json())
+                //.then(data=>console.log(data));
+            
+        </script>
+    </head>
+    <body>
+        User-id <input id="txtid" type="text" placeholder="userid"><br><br>
+        Name <input id="txtName" type="text" placeholder="name"><br><br>
+        Username <input id="txtUName" type="text" placeholder="username"><br><br>
+        Email <input id="txtemail" type="email" placeholder="email"><br><br>
+        <button onclick="addProduct()">Click here</button>
+
+    </body>
+</html>
